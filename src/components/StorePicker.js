@@ -12,10 +12,8 @@ class StorePicker extends React.Component {
 	
 	goToStore(e) {
 		e.preventDefault();
-		// grab the text 
 		const slug = this.storeInput.value;
 		this.context.router.transitionTo(`/store/${slug}`);
-		// go to /store/:storeId
 	}
 
 	render () {
