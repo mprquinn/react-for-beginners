@@ -3,22 +3,22 @@ import { formatPrice } from '../helpers';
 
 class Fish extends React.Component {
 	render () {
-		const tp = this.props;
-
-		const isAvailable = tp.details.status === 'available';
+		const { details, index } = this.props;
+		// ^ equivalent to const details = this.props.details, const index = this.props.index
+		const isAvailable = details.status === 'available';
 		const buttonText = isAvailable? 'Add to Order' : 'Sold Out';
 
 		return (
 			<li className="menu-fish">
-				<img src={tp.details.image} alt={tp.details.name} />
+				<img src={details.image} alt={details.name} />
 				<h3 className="fish-name">
 					{this.props.details.name}
-					<span className="price">{formatPrice(tp.details.price)}</span>
+					<span className="price">{formatPrice(details.price)}</span>
 				</h3>
 				<p>
-					{tp.details.desc}
+					{details.desc}
 				</p>
-				<button disabled={!isAvailable}>{buttonText}</button>
+				<button disabled={!isAvailable} onClick={() => this.props.addToOrder(this.props.index)}>{buttonText}</button>
 			</li>
 		);
 	}
